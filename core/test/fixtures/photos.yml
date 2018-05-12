@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  album_id: 1
+  url: MyString
+  description: MyText
+  title: MyString
+  timestamp: 2018-05-13 01:10:22
+
+two:
+  album_id: 1
+  url: MyString
+  description: MyText
+  title: MyString
+  timestamp: 2018-05-13 01:10:22

@@ -1,0 +1,18 @@
+{
+  "plugins": ["@babel/transform-runtime", "@babel/plugin-proposal-optional-chaining"],
+  "presets": [
+    "@babel/react",
+    ["@babel/es2015", {"loose": true, "modules": false}],
+    ["@babel/preset-stage-0", {"decoratorsLegacy": true}],
+    ["@babel/preset-stage-1", {"decoratorsLegacy": true}],
+    ["@babel/preset-stage-2", {"decoratorsLegacy": true}],
+    ["@babel/preset-stage-3", {"decoratorsLegacy": true}]
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        "@babel/es2015"
+      ]
+    }
+  }
+}

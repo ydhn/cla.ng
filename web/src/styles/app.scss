@@ -1,0 +1,92 @@
+@import url(https://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+* {
+  font-family: 'Noto Sans KR', sans-serif;
+  word-break: keep-all;
+  -ms-hyphens: none;
+  -webkit-hyphens: none;
+  hyphens: none;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #F3F1F3;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 2rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.badge {
+  vertical-align: middle;
+}
+
+#footer {
+  padding: 1.8rem 0 1.8rem;
+  background-color: #F3F1F3;
+  width: 100%;
+  margin: 0;
+  font-size: 0.8rem;
+  color: #999;
+}
+
+#footer a {
+  color: #FEC22E;
+}
+
+.whitePanel {
+  position: relative;
+  padding: 2rem;
+  background-color: rgb(255, 255, 255);
+  margin-bottom: 1em;
+  border-radius: 0.7rem;
+  box-shadow: 0 4px 17px 0 rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease-in-out;
+}
+
+.whitePanelTitle {
+  font-size: 1.3rem;
+  font-weight: bold;
+  opacity: 0.7;
+}
+
+.whitePanelDescription {
+  font-size: 1.2em;
+  opacity: 0.5;
+  padding-bottom: 0.5em;
+}
+
+.whitePanelContent {
+  font-size: 1.6rem;
+}
+
+.whitePanelFullWidthContent {
+  font-size: 1.6rem;
+  padding: 0;
+  margin: 0 -2rem -2rem -2rem;
+}
+
+.whitePanelBtnContainer {
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease-in-out;
+     -moz-transition: opacity 0.3s ease-in-out;
+          transition: opacity 0.3s ease-in-out;
+}
+
+.whitePanelBounce:hover {
+  transform: translate(0, -2px);
+	box-shadow: 0 20px 36px 0 rgba(0, 0, 0, 0.15);
+}
+
+.whitePanel:hover .whitePanelBtnContainer {
+  opacity: 0.6;
+}
