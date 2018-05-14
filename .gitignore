@@ -36,5 +36,7 @@ yarn-error.log*
 # User-specific stuff:
 .idea/\
 core/db/development.sqlite3
+core/db/test.sqlite3
 core/log/development.log
+core/Gemfile.lock
 core/tmp/

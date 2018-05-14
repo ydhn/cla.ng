@@ -16,7 +16,7 @@ export const BrandSpan = (props) => (
 )
 
 export const Placeholder = (props) => (
-  <span style={{ border: '1px solid black' }}>
+  <span style={{ border: '1px solid #999', borderRadius: '0.4rem' }}>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   </span>
 )

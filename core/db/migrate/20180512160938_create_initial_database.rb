@@ -76,7 +76,7 @@ class CreateInitialDatabase < ActiveRecord::Migration[5.1]
       t.integer :response_id
       t.integer :question_id
       
-      t.string :url
+      t.string :photo
       t.text :description
       t.string :title
       t.datetime :timestamp
@@ -104,7 +104,7 @@ class CreateInitialDatabase < ActiveRecord::Migration[5.1]
     create_table :voice_records do |t|
       t.integer :response_id
       t.integer :user_id
-      t.string :url
+      t.string :sound
 
       t.timestamps
     end

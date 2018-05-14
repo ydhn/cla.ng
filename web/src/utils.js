@@ -39,7 +39,7 @@ const buildBodyToFetch = data => {
   }
 }
 
-export const fetchMisoWeb = (path, options = {}) => {
+export const fetchAPI = (path, options = {}) => {
   const url = new window.URL(API_URL);
   const headers = new Headers({ ...DEFAULT_HEADERS, ...options.headers });
   if (!headers.has('content-type') && typeof options.body === 'string') {

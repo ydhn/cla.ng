@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20180512160938) do
     t.integer "album_id"
     t.integer "response_id"
     t.integer "question_id"
-    t.string "url"
+    t.string "photo"
     t.text "description"
     t.string "title"
     t.datetime "timestamp"
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 20180512160938) do
   create_table "voice_records", force: :cascade do |t|
     t.integer "response_id"
     t.integer "user_id"
-    t.string "url"
+    t.string "sound"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

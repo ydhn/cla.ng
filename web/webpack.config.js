@@ -19,7 +19,7 @@ const pluginList = [
       }
     }
   }),
-  new ExtractTextPlugin('hongkong-bundle.css'),
+  new ExtractTextPlugin('clang-bundle.css'),
   new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /ko/)
 ];
 
@@ -32,7 +32,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'hongkong-bundle.js',
+    filename: 'clang-bundle.js',
     publicPath: '/'
   },
   optimization: {
