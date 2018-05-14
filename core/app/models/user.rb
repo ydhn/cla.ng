@@ -19,8 +19,9 @@ class User < ApplicationRecord
   end
   
   def clan
-    return self.clans.first unless self.clans.blank?
-    raise ClangError, "가입된 가족이 없습니다!"
+    self.clans.first
+    #return self.clans.first unless self.clans.blank?
+    #raise ClangError, "가입된 가족이 없습니다!"
   end
 
   def self.find_for_oauth(auth, signed_in_resource = nil)

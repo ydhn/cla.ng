@@ -6,11 +6,13 @@ Rails.application.routes.draw do
     get "auth/kakao/callback", to: 'users/omniauth_callbacks#kakao'
   end
 
-  devise_for :users, :controllers => { 
-    omniauth_callbacks: 'users/omniauth_callbacks',
+  devise_for :users, :controllers => {
+    omniauth_callbacks: "users/omniauth_callbacks",
     registrations: "users/registrations",
-    sessions: 'users/sessions'
+    sessions: "users/sessions"
   }
 
+  get "users/me", to: "users#show"
+  resources :users, only: [:show]
   resources :questions, only: [:index, :show]
 end

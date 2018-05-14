@@ -8,7 +8,8 @@ import MicIcon from '@material-ui/icons/Mic';
 import EditIcon from '@material-ui/icons/Edit';
 import InsertPhotoIcon from '@material-ui/icons/InsertPhoto'
 
-import { Placeholder, BrandSpan } from './questions';
+import { BrandSpan } from '../components/common/widgets';
+import { Placeholder } from './questions';
 import { WithoutHeaderLayout } from '../layouts/default';
 
 const styles = {
