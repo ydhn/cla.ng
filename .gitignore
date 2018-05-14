@@ -37,3 +37,4 @@ yarn-error.log*
 .idea/\
 core/db/development.sqlite3
 core/log/development.log
+core/tmp/
