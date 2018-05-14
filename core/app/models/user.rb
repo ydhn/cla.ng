@@ -1,4 +1,7 @@
+require 'clang_exceptions'
+
 class User < ApplicationRecord
+  include ClangExceptions
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
@@ -12,5 +15,10 @@ class User < ApplicationRecord
   def join_clan(params)
     return if params[:clan_id].blank? or params[:family_role_id].blank? 
     Relationship.create! user_id: self.id, clan_id: params[:clan_id], family_role_id: params[:family_role_id]
+  end
+  
+  def clan
+    return self.clans.first unless self.clans.blank?
+    raise ClangError, "가입된 가족이 없습니다!"
   end
 end
