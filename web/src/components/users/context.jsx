@@ -21,6 +21,7 @@ export class UserConsumer extends Component {
     return (
       <User.Consumer>
         {({ user }) => {
+          if (user === undefined) return null;
           if (user) {
             if (user.clan) {
               return this.props.children(user);

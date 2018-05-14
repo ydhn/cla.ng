@@ -14,5 +14,6 @@ Rails.application.routes.draw do
 
   get "users/me", to: "users#show"
   resources :users, only: [:show]
+  resources :family_roles, only: [:index]
   resources :questions, only: [:index, :show]
 end

@@ -40,14 +40,15 @@ class App extends Component {
 
   loadUser = (reload=false) => {
     if (!reload && Object.keys(this.state).includes('user')) return this.state.user;
-    this.setState({ user: null });
+    this.setState({ user: undefined });
     fetchAPI('/users/me').then(user => {
       if (user) {
         this.setState({ user });
       }
       else this.openLoginPage();
     }).catch(e => {
-      this.openLoginPage();
+      window.alert(e);
+      //this.openLoginPage();
     });
   }  
 }

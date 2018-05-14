@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { fetchAPI } from '../../utils';
 
-class APILoader extends Component {
+export default class Get extends Component {
   static propTypes = {
-    path: PropTypes.string,
+    url: PropTypes.string,
   }
+
+  state = {};
 
   getData() {
     if (Object.keys(this.state).includes('response')) {
@@ -14,7 +16,7 @@ class APILoader extends Component {
     }
     else {
       this.setState({ response: null });
-      fetchAPI(this.props.path).then(response => this.setState(response));
+      fetchAPI(this.props.url).then(response => this.setState({ response }));
       return null;
     }
   }
