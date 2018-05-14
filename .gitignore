@@ -1,4 +1,7 @@
 package-lock.json
+.byebug_history
+*.sqlite3
+*.log 
 
 # dependencies
 node_modules

@@ -7,6 +7,20 @@ class CreateInitialDatabase < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
+    create_table :family_roles do |t|
+      t.string :title
+      t.text :description
+      t.string :photo_id
+    end
+
+    create_table :relationships do |t|
+      t.integer :family_role_id
+      t.integer :user_id
+      t.integer :clan_id
+      t.string :nickname
+    end
+
+
     create_table :users do |t|
       ## Database authenticatable
       t.integer :clan_id

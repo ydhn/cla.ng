@@ -37,6 +37,12 @@ ActiveRecord::Schema.define(version: 20180512160938) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "family_roles", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "photo_id"
+  end
+
   create_table "photos", force: :cascade do |t|
     t.integer "user_id"
     t.integer "album_id"
@@ -56,6 +62,13 @@ ActiveRecord::Schema.define(version: 20180512160938) do
     t.integer "photo_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "family_role_id"
+    t.integer "user_id"
+    t.integer "clan_id"
+    t.string "nickname"
   end
 
   create_table "responses", force: :cascade do |t|

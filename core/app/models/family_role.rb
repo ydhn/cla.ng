@@ -1,0 +1,3 @@
+class FamilyRole < ApplicationRecord
+  
+end

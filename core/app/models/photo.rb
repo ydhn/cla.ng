@@ -1,6 +1,6 @@
 class Photo < ApplicationRecord
-  belongs_to :user
-  belongs_to :album
-  belongs_to :response
-  belongs_to :question
+  belongs_to :album, optional: true
+  belongs_to :question, optional: true
+  belongs_to :response, optional: true
+  belongs_to :user, optional: true
 end
