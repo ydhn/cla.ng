@@ -4,23 +4,9 @@ import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import registerServiceWorker from './registerServiceWorker';
 import './styles/app.scss';
 import { fetchAPI } from './utils';
+import { User } from './components/users/context';
 
 require('./utils');
-
-export const User = createContext({});
-export const UserConsumer = (props) => (
-  <User.Consumer>
-    {({ user }) => props.children(user)}
-  </User.Consumer>
-)
-export const mainTheme = {
-  typography: { fontFamily: 'Noto Sans KR' },
-  palette: {
-    primary: {
-      main: '#EE9D80',
-    },
-  },
-};
 
 class App extends Component {
   state = {
@@ -43,6 +29,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    window.reloadUser = () => this.loadUserUser(true);
     this.loadUser();
   }
 
@@ -51,8 +38,8 @@ class App extends Component {
     window.location.href = '/start';
   }
 
-  loadUser = (reload = false) => {
-    if (Object.keys(this.state).includes('user')) return this.state.user;
+  loadUser = (reload=false) => {
+    if (!reload && Object.keys(this.state).includes('user')) return this.state.user;
     this.setState({ user: null });
     fetchAPI('/users/me').then(user => {
       if (user) {
@@ -64,6 +51,15 @@ class App extends Component {
     });
   }  
 }
+
+export const mainTheme = {
+  typography: { fontFamily: 'Noto Sans KR' },
+  palette: {
+    primary: {
+      main: '#EE9D80',
+    },
+  },
+};
 
 render(<App />, document.getElementById('app'));
 registerServiceWorker();
