@@ -24,6 +24,10 @@ npm install
 ```
 
 ### Start 
+```bash
+npm start #local api server development
+API_URL=http://cla.ng npm start #redirects to real api server
+```
 
 ## Member
 박서연, 이유영, 한윤도, 황수연
