@@ -14,7 +14,7 @@ const pluginList = [
   new webpack.DefinePlugin({
     process: {
       env: {
-        API_URL: JSON.stringify(`${process.env.API_URL || 'http://localhost:3000/backoffice'}`),
+        API_URL: JSON.stringify(`${process.env.API_URL || 'http://localhost:3000'}`),
         NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       }
     }

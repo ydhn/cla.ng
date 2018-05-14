@@ -8,6 +8,7 @@ import { Logo, SpeechBubble } from '../components/common/assets';
 import { mainTheme } from '../index';
 import { ButtonBase, List, ListItem, ListItemIcon, ListItemText } from 'material-ui';
 import { Divider } from 'material-ui';
+import { fetchAPI } from '../utils';
 
 export const BrandSpan = (props) => (
   <span style={{ color: mainTheme.palette.primary.main, fontWeight: 'bold' }}>
@@ -28,6 +29,8 @@ class QuestionIndex extends Component {
       push: PropTypes.func.isRequired,
     }),
   };
+  
+  state = { questions: null };
 
   render() {
     const imageContentStyle = {
@@ -55,9 +58,12 @@ class QuestionIndex extends Component {
       fontWeight: 'bold',
     }
 
+    const { questions } = this.state;
+
     return (
       <WithoutHeaderLayout>
         <div style={{ padding: '0 1rem' }}>
+          {JSON.stringify(questions)}  
           <div style={{ padding: '1rem 0.5rem 0.2rem'}}>
             <Logo fill={mainTheme.palette.primary.main} width="80px" height="30px" />
           </div>
@@ -81,7 +87,7 @@ class QuestionIndex extends Component {
           <WhitePanel fullWidth>
             <div style={{ ...rightLabelStyle, marginRight: '1rem' }}>
               지난 오늘
-            </div>    
+            </div>
             <List>
               <QuestionItem
                 question={<span>비오는 날 vs. 쨍쨍한 날</span>} responses={3}
@@ -101,11 +107,21 @@ class QuestionIndex extends Component {
                 question={<span>아메리카노 vs. 라떼</span>} responses={2}
                 onClick={() => this.redirectTo(1)}
               />
+              {questions?.map(q => (
+                <QuestionItem
+                  question={q.title} />
+              ))}
             </List>
           </WhitePanel>
         </div>
       </WithoutHeaderLayout>
     );
+  }
+
+  componentDidMount() {
+    fetchAPI('/questions').then(questions => {
+      this.setState({ questions });
+    })
   }
 
   redirectTo = (id) => this.props.history.push(`/questions/${id}`);

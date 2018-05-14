@@ -11,7 +11,7 @@
   "dependencies": {
     "@babel/code-frame": "^7.0.0-beta.46",
     "@babel/polyfill": "^7.0.0-beta.46",
-    "@material-ui/icons": "^1.0.0-beta.43",
+    "@material-ui/icons": "^1.0.0-rc.0",
     "autoprefixer": "^8.0.0",
     "history": "^4.7.2",
     "material-ui": "^1.0.0-beta.45",
