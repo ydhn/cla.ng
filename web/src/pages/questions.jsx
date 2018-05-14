@@ -6,15 +6,10 @@ import { WithoutHeaderLayout } from '../layouts/default';
 import { WhitePanel } from '../components/common/panels';
 import { Logo, SpeechBubble } from '../components/common/assets';
 import { mainTheme } from '../index';
+import { BrandSpan } from '../components/common/widgets';
 import { ButtonBase, List, ListItem, ListItemIcon, ListItemText } from 'material-ui';
 import { Divider } from 'material-ui';
 import { fetchAPI } from '../utils';
-
-export const BrandSpan = (props) => (
-  <span style={{ color: mainTheme.palette.primary.main, fontWeight: 'bold' }}>
-    {props.children}
-  </span>
-)
 
 export const Placeholder = (props) => (
   <span style={{ border: '1px solid #999', borderRadius: '0.4rem' }}>

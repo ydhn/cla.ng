@@ -1,5 +1,12 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { mainTheme } from '../../index';
+
+const BrandSpan = (props) => (
+  <span style={{ color: mainTheme.palette.primary.main, fontWeight: 'bold' }}>
+    {props.children}
+  </span>
+)
 
 class Badge extends Component {
   static propTypes = {
@@ -29,4 +36,4 @@ class Badge extends Component {
   }
 }
 
-export { Badge };
+export { Badge, BrandSpan };

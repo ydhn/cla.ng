@@ -11,7 +11,7 @@ module Core
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 
-    _API_ORIGIN_HOSTS = 'localhost:4000,localhost:4001,api.cla.ng,cla.ng'
+    _API_ORIGIN_HOSTS = 'kauth.kakao.com,localhost:4000,localhost:4001,api.cla.ng,cla.ng'
     API_ORIGIN_HOSTS = _API_ORIGIN_HOSTS.split(',')
   
     # Settings in config/environments/* take precedence over those specified here.

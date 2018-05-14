@@ -40,3 +40,4 @@ core/db/test.sqlite3
 core/log/development.log
 core/Gemfile.lock
 core/tmp/
+core/.env
