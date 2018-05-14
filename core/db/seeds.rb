@@ -6,7 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-debugger
 father_role = FamilyRole.create! title: "아버지", description: "자상한 아버지!"
 mother_role = FamilyRole.create! title: "어머니", description: "상냥한 어머니!"
 son_role = FamilyRole.create! title: "아들", description: "말썽꾸러기 아들!"
