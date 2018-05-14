@@ -11,7 +11,7 @@ class DefaultLayout extends Component {
   }
 
   render() {
-    const {headerLeftActions, headerRightActions} = this.props;
+    const { headerLeftActions, headerRightActions } = this.props;
 
     return (
       <div className="default-layout">
@@ -26,4 +26,18 @@ class DefaultLayout extends Component {
   }
 }
 
-export { DefaultLayout };
+class WithoutHeaderLayout extends Component {
+  render() {
+    return (
+      <div className="default-layout">
+        <div>
+          {this.props.children}
+        </div>
+        <Footer />
+        <BottomNavigation />
+      </div>
+    );
+  }
+}
+
+export { DefaultLayout, WithoutHeaderLayout };

@@ -45,34 +45,39 @@ body {
 
 .whitePanel {
   position: relative;
-  padding: 2rem;
+  padding: 1rem;
   background-color: rgb(255, 255, 255);
-  margin-bottom: 1em;
+  background-size:     cover;
+  background-repeat:   no-repeat;
+  background-position: center center; 
+  margin-bottom: 1rem;
   border-radius: 0.7rem;
   box-shadow: 0 4px 17px 0 rgba(0, 0, 0, 0.1);
   transition: 0.3s ease-in-out;
 }
 
 .whitePanelTitle {
-  font-size: 1.3rem;
+  font-size: 0.8rem;
   font-weight: bold;
   opacity: 0.7;
 }
 
 .whitePanelDescription {
-  font-size: 1.2em;
+  font-size: 1.2rem;
   opacity: 0.5;
-  padding-bottom: 0.5em;
+  padding-bottom: 0.5rem;
 }
 
 .whitePanelContent {
-  font-size: 1.6rem;
+  font-size: 1.2rem;
+  z-index: 1;
 }
 
 .whitePanelFullWidthContent {
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   padding: 0;
-  margin: 0 -2rem -2rem -2rem;
+  margin: 0 -1rem -1rem -1rem;
+  z-index: 1;
 }
 
 .whitePanelBtnContainer {
@@ -89,4 +94,12 @@ body {
 
 .whitePanel:hover .whitePanelBtnContainer {
   opacity: 0.6;
+}
+
+.brandBox {
+  background-color: #EE9D80;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0.3rem 1rem;
 }

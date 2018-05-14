@@ -4,20 +4,20 @@ import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import registerServiceWorker from './registerServiceWorker';
 import './styles/app.scss';
 
-
 require('./utils');
+
+export const mainTheme = {
+  typography: { fontFamily: 'Noto Sans KR' },
+  palette: {
+    primary: {
+      main: '#EE9D80',
+    },
+  },
+};
 
 class App extends Component {
   render() {
-    const muiTheme = createMuiTheme({
-      typography: { fontFamily: 'Noto Sans KR' },
-      palette: {
-        primary: {
-          main: '#EE9D80',
-        },
-      },
-    });
-
+    const muiTheme = createMuiTheme(mainTheme);
     return (
       <div className="app">
         <MuiThemeProvider theme={muiTheme}>

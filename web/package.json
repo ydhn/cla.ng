@@ -10,6 +10,7 @@
     "production-deploy": "rimraf dist && API_URL='https://www.getmiso.com/backoffice' webpack --progress --mode=production && ncp src/index.html dist/index.html && NODE_ENV='production' node deploy"
   },
   "dependencies": {
+    "@babel/code-frame": "^7.0.0-beta.46",
     "@babel/polyfill": "^7.0.0-beta.46",
     "@material-ui/icons": "^1.0.0-beta.43",
     "autoprefixer": "^8.0.0",

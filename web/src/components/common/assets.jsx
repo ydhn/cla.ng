@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { mainTheme } from '../../index';
 
 export class Logo extends Component {
   render() {
@@ -47,5 +48,52 @@ export class GlyphLogo extends Component {
         </svg>
       </div>
     );
+  }
+}
+
+export class WhiteLogo extends Component {
+  render() { 
+    const { width, height } = this.props;
+    return (
+      <div style={{ display: "inline-block", width: width, height: height }}>
+        <svg preserveAspectRatio="none" viewBox="0 0 1374.74 1123.48">
+          <ellipse cx="687.37" cy="873.17" rx="687.37" ry="250.31" style={{fill:'#abd6a1'}}/>
+          <g style={{opacity: 0.57}}>
+            <polygon points="686.35 136.23 697.55 515.9 1022.95 686.02 1022.95 330.96 686.35 136.23" 
+            style={{fill: "#facac4"}}/>
+          </g>
+          <polygon points="339.26 324.58 339.26 726.53 687.36 927.5 1035.45 726.53 1035.45 324.58 687.36 123.61 339.26 324.58" style={{fill:"#ffdcdf"}} />
+          <path d="M768,1145.69,393,929.2v-433L768,279.73l375,216.49v433ZM446.77,898.16,768,1083.62,1089.2,898.16V527.26L768,341.8,446.77,527.26Z" transform="translate(-80.63 -187.16)" style={{fill:"#ffdcdf"}} />
+          <polygon points="397.08 348.32 397.08 683.49 687.37 851.09 687.37 180.73 397.08 348.32" style={{fill:"#f7b1a6"}} />
+          <polyline points="714.37 525.55 1008.52 697.12 1008.52 340.05 708.32 165.21" style={{fill:"#ffbeb3"}} />
+          <g style={{opacity: 0.55}}><rect x="572.16" y="377.43" width="53.76" height="459.93" transform="translate(-299.56 662.56) rotate(-61.9)" style={{fill:"#fff"}}/></g>
+          <polygon points="697.55 515.9 701.66 908.11 1014.3 690.65 697.55 515.9" style={{fill:"#f69e8a"}}/>
+          <path d="M768,703.06" transform="translate(-80.63 -187.16)" style={{fill:"none",stroke:"#f69e8a",strokeMiterlimit:"10",strokeWidth:"35px"}} />
+          <path d="M593.94,497.41" transform="translate(-80.63 -187.16)" style={{fill:"none",stroke:"#f69e8a",strokeMiterlimit:"10",strokeWidth:"35px"}} />
+          <path d="M1142.77,955.76,1143,843.5,879.72,993.41l-.65-806.25L768,251,362.07,468.7V937.42l405.93,234h0M477.72,870.65V535.47L768,367.88v670.36Z" transform="translate(-80.63 -187.16)" style={{fill:"#fff"}} />
+          <polyline points="799.07 800.17 798.23 5.26 686.86 486.13" style={{fill:"#fff"}} />
+        </svg>
+      </div>
+    )
+  }
+}
+
+export class SpeechBubble extends Component {
+  render() {
+    return (
+      <div style={{ display: "inline-block", width: "40px", height: "32px" }}>  
+        <div style={{
+          position: "absolute",
+          width: "40px", height: "20px", marginTop: "0.2rem", fontSize: "1rem", textAlign: 'center',
+          color: mainTheme.palette.primary.main
+        }}>
+          {this.props.children}  
+        </div>
+        <svg preserveAspectRatio="none" viewBox="-10 -10 264.98 207.68">
+          <path d="M141.73,42.57c-67.37,0-122,40.79-122,91.1,0,21.15,9.66,40.62,25.85,56.08l-21.85,39,50-19.47c19.44,9.77,42.85,15.48,68,15.48,67.37,0,122-40.79,122-91.11S209.1,42.57,141.73,42.57Z" transform="translate(-19.24 -42.07)"
+            style={{ fill: "#fff", stroke: "#d5d6d5", strokeWidth: 4 }} />
+        </svg>
+      </div>
+    )
   }
 }

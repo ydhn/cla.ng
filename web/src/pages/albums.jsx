@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { DefaultLayout } from '../layouts/default';
 
-export default class AlbumPage extends Component {
+export default class AlbumsPage extends Component {
   render() {
     return (
       <DefaultLayout>

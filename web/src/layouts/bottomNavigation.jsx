@@ -31,23 +31,23 @@ class BottomNavigationBar extends Component {
   render() {
     const { classes, match } = this.props;
     const { value } = this.state;
-    console.log(match.path);
+    console.log();
     return (
       <BottomNavigation
-        value={match.path}
+        value={match.path.split('/')?.[1]}
         onChange={this.handleChange}
         showLabels
         className={classes.root}>
         <BottomNavigationAction
-          value="/albums"
+          value="albums"
           label="앨범" icon={<PhotoCameraIcon />}
           onClick={() => this.handleClick("/albums")} />
         <BottomNavigationAction
-          value="/todays"
+          value="questions"
           label="오늘" icon={<SpeakerNotesIcon />}
-          onClick={() => this.handleClick("/todays")} />
+          onClick={() => this.handleClick("/questions")} />
         <BottomNavigationAction
-          value="/settings"
+          value="settings"
           label="설정" icon={<SettingsIcon />}
           onClick={() => this.handleClick("/settings")} />
       </BottomNavigation>

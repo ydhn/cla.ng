@@ -13,11 +13,11 @@ const styles = {
 class WhitePanel extends Component {
   static propTypes = {
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    description: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     actions: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     className: PropTypes.string,
     display: PropTypes.string,
     fullWidth: PropTypes.bool,
+    backgroundImage: PropTypes.string,
     bounce: PropTypes.bool,
     style: PropTypes.object,
     titleStyle: PropTypes.object,
@@ -28,6 +28,7 @@ class WhitePanel extends Component {
     className: "",
     display: "block",
     fullWidth: false,
+    backgroundImage: "",
     bounce: true,
     style: {},
     titleStyle: {},
@@ -39,11 +40,13 @@ class WhitePanel extends Component {
   }
 
   render() {
-    const { title, description } = this.state
-    const { style, titleStyle, display, bounce, actions, fullWidth } = this.props
-
+    const { title } = this.state
+    const { style, titleStyle, display, backgroundImage, bounce, actions, fullWidth } = this.props
+    
+    const backgroundImageStyle = backgroundImage ? { backgroundColor: 'black', backgroundImage: `url("${backgroundImage}")` } : {};
     return (
-      <div className={`${styles.whitePanel} ${bounce ? styles.whitePanelBounce : ""} ${this.props.className}`} style={{ ...style, display }}>
+      <div className={`${styles.whitePanel} ${bounce ? styles.whitePanelBounce : ""} ${this.props.className}`}
+        style={{ ...style, ...backgroundImageStyle, display }}>
         <div className={styles.whitePanelTitle} style={titleStyle}>
           {title}
           <div className={`pull-right ${styles.whitePanelBtnContainer}`}
@@ -51,7 +54,6 @@ class WhitePanel extends Component {
             {actions}
           </div>
         </div>
-        <div className={styles.whitePanelDescription}>{description}</div>
         <div className={fullWidth ? styles.whitePanelFullWidthContent : styles.whitePanelContent }>
           {this.props.children}
         </div>
