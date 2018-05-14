@@ -6,6 +6,7 @@ import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import Get from '../components/common/get';
 
+import { fetchAPI, objectToFormData } from '../utils';
 import { withRouter, Redirect } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
 import { mainTheme } from '../index';
@@ -15,8 +16,21 @@ import { Badge } from '../components/common/widgets';
 import { Button } from '@material-ui/core';
 
 class JoinPage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      form: {
+        name: "",
+        family_role_id: 0,
+      }
+    };
+  }
+
   render() {
     const { classes } = this.props;
+    const { form } = this.state; 
+
     return (
       <UserConsumer skipEnsureClan>
         {user => (
@@ -30,16 +44,15 @@ class JoinPage extends Component {
               <div className={classes.inputContainer}>
                 <Get url="/family_roles">
                   {roles => (
-                    <Select fullWidth value={roles[0].id}>
+                    <Select fullWidth
+                      inputRef={ref => this.frSelector = ref}  
+                      onChange={({ target }) => this.handleChange('family_role_id', target.value)}  
+                      value={form.family_role_id || roles[0].id}>
                       {roles.map((r, i) => (
                         <MenuItem key={i} value={r.id}>
                           <div>
-                            <Badge>
-                              {r.title}
-                            </Badge>
-                            <small>
-                              {r.description}
-                            </small>
+                            <Badge>{r.title}</Badge>
+                            <small>{r.description}</small>
                           </div>
                         </MenuItem>
                       ))}
@@ -48,23 +61,22 @@ class JoinPage extends Component {
                 </Get>
                 
                 <TextField
-                  fullWidth
-                  label="이름"
-                  defaultValue={user.name}
-                  margin="normal"
+                  inputRef={ref => this.nameField = ref}
+                  fullWidth label="이름" margin="normal"
+                  value={form.name || user.name}
+                  onChange={({ target }) => this.handleChange('name', target.value)}
                 />
                 <br />
                 <TextField
-                  fullWidth
-                  label="가족 이름"
-                  defaultValue="아텍사랑"
-                  margin="normal"
+                  fullWidth label="가족 이름" margin="normal"
+                  value="아텍사랑" 
                 />
                 <br />
                 <div className={classes.warning}>
                   아래 버튼을 누르시면 이용 약관에 동의한 것으로 간주합니다.
                 </div>
-                <Button className={classes.button}
+                <Button className={classes.button}  
+                  onClick={this.handleClick}  
                   color="primary" variant="raised" fullWidth>
                   클랑 시작하기
                 </Button>
@@ -78,6 +90,27 @@ class JoinPage extends Component {
         )}
       </UserConsumer>
     )
+  }
+
+  handleChange = (name, value) => this.setState({ form: { ...this.state.form, [name]: value } });
+  handleClick = () => {
+    let { form } = this.state;
+    debugger
+    form = {
+      ...form,
+      name: this.nameField.value,
+      family_role_id: this.frSelector.value,
+    };
+  
+    fetchAPI('/users', {
+      method: 'POST',
+      body: objectToFormData(form)
+    }).then(response => {
+      window.reloadUser(response);
+      this.props.history.push('/questions');
+    }).catch(e => {
+      window.alert(e.message);
+    });
   }
 }
 

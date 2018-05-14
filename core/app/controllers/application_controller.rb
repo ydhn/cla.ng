@@ -3,7 +3,7 @@ require 'clang_exceptions'
 class ApplicationController < ActionController::Base
   include ClangExceptions
   
-  protect_from_forgery with: :exception
+  #protect_from_forgery with: :exception -> CSRF 문제
 
   def current_user_json
     current_user ? 

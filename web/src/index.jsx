@@ -29,7 +29,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    window.reloadUser = () => this.loadUserUser(true);
+    window.reloadUser = (newUser=null) => this.loadUser(true, newUser);
     this.loadUser();
   }
 
@@ -38,7 +38,11 @@ class App extends Component {
     window.location.href = '/start';
   }
 
-  loadUser = (reload=false) => {
+  loadUser = (reload = false, newUser = null) => {
+    if (newUser) {
+      this.setState({ user: newUser });
+      return;
+    }
     if (!reload && Object.keys(this.state).includes('user')) return this.state.user;
     this.setState({ user: undefined });
     fetchAPI('/users/me').then(user => {
