@@ -1,12 +1,15 @@
 class QuestionsController < ApplicationController
   def index
-    user_clan = current_user.clan
+    uc = current_user.clan
     @questions = Question.all
-    @questions.each do |q|
-      q.response_number = q.responses.where(clan_id: user_clan.id)
-    end
     
-    render json: @questions
+    render json: (Jbuilder.encode do |json|
+      json.array! @questions do |q|
+        json.extract! q, :title, :description
+        json.photo q.photo
+        json.responses q.responses.where(clan_id: uc.id)
+      end
+    end)
   end
 
   def show

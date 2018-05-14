@@ -98,6 +98,7 @@ class CreateInitialDatabase < ActiveRecord::Migration[5.1]
       t.string :resource_type
       t.integer :resource_id
       t.integer :user_id
+      t.integer :clan_id
 
       t.timestamps
     end

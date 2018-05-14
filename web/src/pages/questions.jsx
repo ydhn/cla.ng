@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Get from '../components/common/get';
 
 import { withRouter } from 'react-router-dom';
 import { WithoutHeaderLayout } from '../layouts/default';
@@ -10,7 +11,6 @@ import { mainTheme } from '../index';
 import { BrandSpan } from '../components/common/widgets';
 import { ButtonBase, List, ListItem, ListItemIcon, ListItemText } from 'material-ui';
 import { Divider } from 'material-ui';
-import { fetchAPI } from '../utils';
 
 export const Placeholder = (props) => (
   <span style={{ border: '1px solid #999', borderRadius: '0.4rem' }}>
@@ -53,75 +53,74 @@ class QuestionIndex extends Component {
       fontWeight: 'bold',
     }
 
-    const { questions } = this.state;
-
     return (
       <UserConsumer>
         {user => (
           <WithoutHeaderLayout>
             <div style={{ padding: '0 1rem' }}>
-              {JSON.stringify(questions)}
               <div style={{ padding: '1rem 0.5rem 0.2rem' }}>
                 <Logo fill={mainTheme.palette.primary.main} width="80px" height="30px" />
               </div>
 
-              <WhitePanel
-                fullWidth
-                backgroundImage="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=612621fd686897b4812287430c8be9db&auto=format&fit=crop&w=2104&q=80">
-                <ButtonBase component="div"
-                  onClick={() => this.redirectTo(1)}
-                  style={buttonBaseStyle}>
-                  <div style={imageContentStyle}>
-                    <div style={rightLabelStyle}>오늘</div>
-                    <div>
-                      올해의<br />
-                      <BrandSpan>버킷 리스트</BrandSpan>는?
-                  </div>
-                  </div>
-                </ButtonBase>
-              </WhitePanel>
+              <Get url="/questions">
+                {questions => (
+                  <div>
+                    <WhitePanel
+                      fullWidth
+                      backgroundImage="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=612621fd686897b4812287430c8be9db&auto=format&fit=crop&w=2104&q=80">
+                      <ButtonBase component="div"
+                        onClick={() => this.redirectTo(1)}
+                        style={buttonBaseStyle}>
+                        <div style={imageContentStyle}>
+                          <div style={rightLabelStyle}>오늘</div>
+                          <div>
+                            올해의<br />
+                            <BrandSpan>버킷 리스트</BrandSpan>는?
+                          </div>
+                        </div>
+                      </ButtonBase>
+                    </WhitePanel>
 
-              <WhitePanel fullWidth>
-                <div style={{ ...rightLabelStyle, marginRight: '1rem' }}>
-                  지난 오늘
-              </div>
-                <List>
-                  <QuestionItem
-                    question={<span>비오는 날 vs. 쨍쨍한 날</span>} responses={3}
-                    onClick={() => this.redirectTo(1)}
-                  />
-                  <QuestionItem
-                    question={<span>내가 가보고 싶은 나라는 <Placeholder /> 이다.</span>} responses={3}
-                    onClick={() => this.redirectTo(1)}
-                  />
-                  <QuestionItem
-                    question={<span>요즘 걱정거리 있어?</span>} responses={2} />
-                  <QuestionItem
-                    question={<span>내가 제일 좋아하는 꽃은 <Placeholder /> 다.</span>} responses={4}
-                    onClick={() => this.redirectTo(1)}
-                  />
-                  <QuestionItem final
-                    question={<span>아메리카노 vs. 라떼</span>} responses={2}
-                    onClick={() => this.redirectTo(1)}
-                  />
-                  {questions ?.map(q => (
-                    <QuestionItem
-                      question={q.title} />
-                  ))}
-                </List>
-              </WhitePanel>
+                    <WhitePanel fullWidth>
+                      <div style={{ ...rightLabelStyle, marginRight: '1rem' }}>
+                        지난 오늘
+                    </div>
+                      <List>
+                        <QuestionItem
+                          question={<span>비오는 날 vs. 쨍쨍한 날</span>} responses={3}
+                          onClick={() => this.redirectTo(1)}
+                        />
+                        <QuestionItem
+                          question={<span>내가 가보고 싶은 나라는 <Placeholder /> 이다.</span>} responses={3}
+                          onClick={() => this.redirectTo(1)}
+                        />
+                        <QuestionItem
+                          question={<span>요즘 걱정거리 있어?</span>} responses={2} />
+                        <QuestionItem
+                          question={<span>내가 제일 좋아하는 꽃은 <Placeholder /> 다.</span>} responses={4}
+                          onClick={() => this.redirectTo(1)}
+                        />
+                        <QuestionItem final
+                          question={<span>아메리카노 vs. 라떼</span>} responses={2}
+                          onClick={() => this.redirectTo(1)}
+                        />
+                        {questions?.map(q => (
+                          <QuestionItem
+                            question={q.title} />
+                        ))}
+                      </List>
+                    </WhitePanel>
+                  </div>
+                )}
+              </Get>
+
+              
             </div>
           </WithoutHeaderLayout>
         )}
       </UserConsumer>
       
     );
-  }
-
-  componentDidMount() {
-    fetchAPI('/questions').then(questions => {
-      this.setState({ questions });
-    })
   }
 
   redirectTo = (id) => this.props.history.push(`/questions/${id}`);

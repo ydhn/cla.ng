@@ -25,8 +25,8 @@ export default class Get extends Component {
     const response = this.getData();
     return response ?
       this.props.children(response) :
-      <div style={{ width: '100%', height: '100%' }}>
-        <CircularProgress />
+      <div style={{ textAlign: 'center', width: '100%', height: '100%' }}>
+        <CircularProgress size={70} thickness={4} />
       </div>;
   }
 }

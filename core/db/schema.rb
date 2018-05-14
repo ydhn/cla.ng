@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20180514092403) do
     t.string "resource_type"
     t.integer "resource_id"
     t.integer "user_id"
+    t.integer "clan_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

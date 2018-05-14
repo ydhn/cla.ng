@@ -33,7 +33,7 @@ class JoinPage extends Component {
 
     return (
       <UserConsumer skipEnsureClan>
-        {user => (
+        {user => user.clan ? <Redirect to="/questions" /> :(
           <Paper elevation={6} className={classes.paper}>
             <div className={classes.container}>
               <Avatar
@@ -95,7 +95,6 @@ class JoinPage extends Component {
   handleChange = (name, value) => this.setState({ form: { ...this.state.form, [name]: value } });
   handleClick = () => {
     let { form } = this.state;
-    debugger
     form = {
       ...form,
       name: this.nameField.value,

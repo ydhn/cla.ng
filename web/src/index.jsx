@@ -46,10 +46,7 @@ class App extends Component {
     if (!reload && Object.keys(this.state).includes('user')) return this.state.user;
     this.setState({ user: undefined });
     fetchAPI('/users/me').then(user => {
-      if (user) {
-        this.setState({ user });
-      }
-      else this.openLoginPage();
+      this.setState({ user });
     }).catch(e => {
       window.alert(e);
       //this.openLoginPage();
