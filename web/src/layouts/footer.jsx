@@ -5,10 +5,10 @@ export class Footer extends Component {
   render() {
     return (
       <footer id="footer">
-        <div style={{ textAlign: 'center' }}>
+        {/* <div style={{ textAlign: 'center' }}>
           <WhiteLogo width="70px" height="30px" />
           <br /><br /><br />
-        </div>
+        </div> */}
       </footer>
     )
   }
