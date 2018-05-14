@@ -1,7 +1,5 @@
 package-lock.json
 .byebug_history
-*.sqlite3
-*.log 
 
 # dependencies
 node_modules
@@ -37,3 +35,5 @@ yarn-error.log*
 
 # User-specific stuff:
 .idea/\
+core/db/development.sqlite3
+core/log/development.log
