@@ -17,6 +17,10 @@ class User < ApplicationRecord
     return if params[:clan_id].blank? or params[:family_role_id].blank? 
     Relationship.create! user_id: self.id, clan_id: params[:clan_id], family_role_id: params[:family_role_id]
   end
+
+  def family_role
+    FamilyRole.find(self.relationships.last.family_role_id)
+  end
   
   def clan
     self.clans.first

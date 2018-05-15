@@ -86,27 +86,12 @@ class QuestionIndex extends Component {
                         지난 오늘
                     </div>
                       <List>
-                        <QuestionItem
-                          question={<span>비오는 날 vs. 쨍쨍한 날</span>} responses={3}
-                          onClick={() => this.redirectTo(1)}
-                        />
-                        <QuestionItem
-                          question={<span>내가 가보고 싶은 나라는 <Placeholder /> 이다.</span>} responses={3}
-                          onClick={() => this.redirectTo(1)}
-                        />
-                        <QuestionItem
-                          question={<span>요즘 걱정거리 있어?</span>} responses={2} />
-                        <QuestionItem
-                          question={<span>내가 제일 좋아하는 꽃은 <Placeholder /> 다.</span>} responses={4}
-                          onClick={() => this.redirectTo(1)}
-                        />
-                        <QuestionItem final
-                          question={<span>아메리카노 vs. 라떼</span>} responses={2}
-                          onClick={() => this.redirectTo(1)}
-                        />
-                        {questions?.map(q => (
+                        {questions?.map((q, i, arr) => (
                           <QuestionItem
-                            question={q.title} />
+                            key={i} final={arr.length === i + 1}
+                            question={q.title} responses={q.responses}
+                            onClick={() => this.redirectTo(q.id)}
+                          />
                         ))}
                       </List>
                     </WhitePanel>
