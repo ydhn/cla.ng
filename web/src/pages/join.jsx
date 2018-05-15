@@ -126,7 +126,7 @@ const styles = {
   },
   paper: {
     height: '100%',
-    margin: '2rem !important',
+    margin: '1rem !important',
   },
   avatar: {
     margin: 10,

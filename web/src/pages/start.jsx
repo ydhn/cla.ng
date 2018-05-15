@@ -27,8 +27,8 @@ class StartPage extends Component {
       <UserConsumer skipEnsureLogin>
         {user => user ? <Redirect to="/questions" /> : (
           <div className={classes.StartPage}>
-            <GlyphLogo width="150px" height="150px" />
-            <Logo width="200px" height="50px" fill={mainTheme.palette.primary.main} />
+            <GlyphLogo width="60px" height="60px" />
+            <Logo width="100px" height="10px" fill={mainTheme.palette.primary.main} />
             <div className={classes.description}>
               우리 가족이랑 <BrandSpan>클랑</BrandSpan>
             </div>
@@ -54,7 +54,7 @@ const styles = {
   },
   description: {
     margin: '2rem 0 4rem',
-    fontSize: '1.5rem',
+    fontSize: '1rem',
     fontWeight: 'lighter'
   },
 };

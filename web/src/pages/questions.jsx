@@ -11,12 +11,8 @@ import { mainTheme } from '../index';
 import { BrandSpan } from '../components/common/widgets';
 import { ButtonBase, List, ListItem, ListItemIcon, ListItemText } from 'material-ui';
 import { Divider } from 'material-ui';
+import { QuestionTitle } from './question';
 
-export const Placeholder = (props) => (
-  <span style={{ border: '1px solid #999', borderRadius: '0.4rem' }}>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  </span>
-);
 
 class QuestionIndex extends Component {
   static propTypes = {
@@ -84,12 +80,12 @@ class QuestionIndex extends Component {
                     <WhitePanel fullWidth>
                       <div style={{ ...rightLabelStyle, marginRight: '1rem' }}>
                         지난 오늘
-                    </div>
+                      </div>
                       <List>
                         {questions?.map((q, i, arr) => (
                           <QuestionItem
-                            key={i} final={arr.length === i + 1}
                             question={q.title} responses={q.responses}
+                            key={i} final={arr.length === i + 1}
                             onClick={() => this.redirectTo(q.id)}
                           />
                         ))}
@@ -98,8 +94,6 @@ class QuestionIndex extends Component {
                   </div>
                 )}
               </Get>
-
-              
             </div>
           </WithoutHeaderLayout>
         )}
@@ -132,7 +126,7 @@ class QuestionItem extends Component {
         <ListItem button onClick={onClick}>
           <div style={{ width: 'calc(100% - 40px)' }}>
             <ListItemText style={{ paddingRight: 0 }}
-              primary={question} />
+              primary={<QuestionTitle inline normalStyle={{ color: 'black' }} text={question} />} />
           </div>
           <ListItemIcon>
             <SpeechBubble>{responses}</SpeechBubble>

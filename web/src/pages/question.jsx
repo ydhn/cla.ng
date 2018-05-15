@@ -12,8 +12,8 @@ import EditIcon from '@material-ui/icons/Edit';
 import InsertPhotoIcon from '@material-ui/icons/InsertPhoto'
 
 import { BrandSpan } from '../components/common/widgets';
-import { Placeholder } from './questions';
 import { WithoutHeaderLayout } from '../layouts/default';
+import { mainTheme } from '..';
 
 const styles = {
   card: {
@@ -44,6 +44,63 @@ const styles = {
   },
 };
 
+export const Placeholder = (props) => (
+  <div style={{
+    display: 'inline-block',
+    transform: 'translate(0, 3px)',
+    width: '3em', height: '1em',
+    border: '1px solid #999', borderRadius: '0.4rem'
+  }}>
+    
+  </div>
+);
+
+export class QuestionTitle extends Component {
+  static propTypes = {
+    text: PropTypes.string.isRequired,
+    inline: PropTypes.bool,
+    noStyle: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    inline: false,
+    noStyle: false,
+    emphasisStyle: { color: mainTheme.palette.primary.main, fontWeight: 'bold' },
+    normalStyle: { color: 'white' },
+  };
+  
+  render() {
+    const { text, inline, noStyle } = this.props;
+    return (
+      <>
+        {text.split('\\n').map((line, i) =>
+          <>
+            {this.renderPartial(line, i*2)}
+            {inline ? <span> </span> : <br key={i * 2 + 1} />}
+          </>
+        )}
+      </>  
+    )    
+  }
+  
+  renderPartial = (line, key) => {
+    const { emphasisStyle, normalStyle } = this.props;
+
+    let shouldBeStyled = true;
+    return line.split('"').map((chunk, i) => {
+      if (chunk === "@") {
+        return <Placeholder />;
+      }
+      shouldBeStyled = !shouldBeStyled;
+      return (
+        <span style={shouldBeStyled ? emphasisStyle : normalStyle} key={key * 100 + i}>
+          {chunk}
+        </span>
+      );
+    });          
+  }
+}
+
 class QuestionView extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
@@ -53,7 +110,7 @@ class QuestionView extends Component {
 
   render() {
     const { classes, match } = this.props;
-    
+
     return (
       <WithoutHeaderLayout>
         <Get url={`/questions/${match.params.id}`}>
@@ -64,17 +121,15 @@ class QuestionView extends Component {
                   05.18  
                 </div>
                 <CardMedia
-                  title="Title"  
-                  style={{height: "calc(100vh - 180px)", display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}
-                  image="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=612621fd686897b4812287430c8be9db&auto=format&fit=crop&w=2104&q=80">
+                  style={{backgroundColor: '#444', height: "calc(100vh - 180px)", display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}
+                  image="https://qqq.images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=612621fd686897b4812287430c8be9db&auto=format&fit=crop&w=2104&q=80">
 
                   <CardContent>
                     <Typography className={classes.title} gutterBottom variant="headline" component="h2">
-                      올해의<br />
-                      <BrandSpan>버킷 리스트</BrandSpan>는?
+                      <QuestionTitle text={q.title} />
                     </Typography>
                     <Typography className={classes.description} component="p">
-                      버킷 리스트란 죽기 전에 꼭 해보고 싶은 일들을 적은 목록입니다. 올해 당신이 꼭 이루고싶은 버킷리스트는 무엇인가요?
+                      {q.description}
                     </Typography>
                   </CardContent>
                   <CardActions className={classes.actions}>
