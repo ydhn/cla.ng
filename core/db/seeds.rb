@@ -22,9 +22,27 @@ daughter = User.create! email: "young@cla.ng", password: "123456", password_conf
 daughter.join_clan clan_id: clan.id, family_role_id: daughter_role.id
 
 clan.albums.destroy_all
-clan.albums.create! title: "홍콩", description: "2018-07 홍콩"
+clan.albums.create! title: "리마인드 웨딩", description: "2018.05.13"
+clan.albums.create! title: "제주도 여행", description: "2017.07.13~"
+clan.albums.create! title: "오늘 미션 앨범", description: "2017.06~"
 
 Question.destroy_all
 Question.create! title: '올해의\n"버킷리스트"는?', description: '버킷리스트란 죽기 전에 꼭해고 싶은 일들을 적은 목록입니다. 올해 당신이 꼭 이루고싶은 버킷리스트는 무엇인가요?'
 Question.create! title: '짜장면 VS 짬뽕', description:'당신의 선택은?'
 Question.create! title: '내가 가보고 싶은 "나라"는 "@"" 이다.', description:'당신의 선택은?'
+
+Article.destroy_all
+Article.create! title: "나의 버킷리스트", description: "딸들이랑 같이 리마인드 웨딩 사진 찍고 싶어요~~"
+Article.create! title: "마라톤~~", description: "가족이랑 마라톤 대회 나가기~~"
+Article.create! title: "버킷리스트!", description: "1. 다이어트\n2. 유럽여행"
+
+father.responses.destroy_all
+father.responses.create! question_id: 1, clan_id: 1, resource_type: 'Article', resource_id: 1
+mother.responses.destroy_all
+mother.responses.create! question_id: 1, clan_id: 1, resource_type: 'Article', resource_id: 2
+daughter.responses.destroy_all
+daughter.responses.create! question_id: 1, clan_id: 1, resource_type: 'Article', resource_id: 3
+
+
+
+
