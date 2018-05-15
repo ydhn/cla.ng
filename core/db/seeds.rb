@@ -30,6 +30,15 @@ Question.destroy_all
 Question.create! title: '올해의\n"버킷리스트"는?', description: '버킷리스트란 죽기 전에 꼭해고 싶은 일들을 적은 목록입니다. 올해 당신이 꼭 이루고싶은 버킷리스트는 무엇인가요?'
 Question.create! title: '짜장면 VS 짬뽕', description:'당신의 선택은?'
 Question.create! title: '내가 가보고 싶은 "나라"는 "@"" 이다.', description:'당신의 선택은?'
+Question.create! title: '내가 가보고 싶은 "나라"는 "@"" 이다.', description:'당신의 선택은?'
+Question.create! title: '이번주 제일 맛있게 먹은 "음식"은 뭐야?', description:'당신의 선택은?'
+Question.create! title: '비오는날vs쨍쨍한날', description:'당신의 선택은?'
+Question.create! title: '요즘 "걱정거리" 있어?', description:'걱정거리가 있나요?'
+Question.create! title: '내가 제일 좋아하는 "꽃"은 "@""다', description:'당신이 가장 좋아하는 꽃은?'
+Question.create! title: '아메리카노VS라떼', description:'당신의 선택은?'
+Question.create! title: '내가 제일 좋아하는 "노래"은 "@""다', description:'당신이 가장 좋아하는 노래는?'
+Question.create! title: '제일 기억에 남는 순간은?', description:'당신이 가장 기억에 남는 순간은 언제인가요?'
+
 
 Article.destroy_all
 Article.create! title: "나의 버킷리스트", description: "딸들이랑 같이 리마인드 웨딩 사진 찍고 싶어요~~"
