@@ -74,7 +74,6 @@ class CreateInitialDatabase < ActiveRecord::Migration[5.1]
     create_table :photos do |t|
       t.integer :user_id
       t.integer :album_id
-      t.integer :response_id
       t.integer :question_id
       
       t.string :photo
@@ -95,8 +94,8 @@ class CreateInitialDatabase < ActiveRecord::Migration[5.1]
 
     create_table :responses do |t|
       t.integer :question_id
-      t.string :resource_type
-      t.integer :resource_id
+      t.references :resource, polymorphic: true, index: true
+
       t.integer :user_id
       t.integer :clan_id
 
@@ -104,7 +103,6 @@ class CreateInitialDatabase < ActiveRecord::Migration[5.1]
     end
 
     create_table :voice_records do |t|
-      t.integer :response_id
       t.integer :user_id
       t.string :sound
 
@@ -114,7 +112,6 @@ class CreateInitialDatabase < ActiveRecord::Migration[5.1]
     create_table :articles do |t|
       t.string :title
       t.text :description
-      t.integer :response_id
       t.integer :user_id
 
       t.timestamps

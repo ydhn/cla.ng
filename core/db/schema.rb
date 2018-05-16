@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20180514092403) do
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.integer "response_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -55,7 +54,6 @@ ActiveRecord::Schema.define(version: 20180514092403) do
   create_table "photos", force: :cascade do |t|
     t.integer "user_id"
     t.integer "album_id"
-    t.integer "response_id"
     t.integer "question_id"
     t.string "photo"
     t.text "description"
@@ -88,6 +86,7 @@ ActiveRecord::Schema.define(version: 20180514092403) do
     t.integer "clan_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["resource_type", "resource_id"], name: "index_responses_on_resource_type_and_resource_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -111,7 +110,6 @@ ActiveRecord::Schema.define(version: 20180514092403) do
   end
 
   create_table "voice_records", force: :cascade do |t|
-    t.integer "response_id"
     t.integer "user_id"
     t.string "sound"
     t.datetime "created_at", null: false

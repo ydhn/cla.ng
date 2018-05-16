@@ -1,4 +1,4 @@
 class VoiceRecord < ApplicationRecord
-  belongs_to :response, optional: true
+  has_one :response, as: :resource
   belongs_to :user, optional: true
 end
