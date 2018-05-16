@@ -5,6 +5,7 @@ import StartPage from './pages/start';
 import JoinPage from './pages/join';
 import QuestionView from './pages/question';
 import QuestionIndex from './pages/questions';
+import ResponsesView from './pages/responses';
 import AlbumIndex from './pages/albums';
 import SettingsPage from './pages/settings';
 
@@ -15,7 +16,8 @@ const routes = (
       <Route path="/start" component={StartPage} />
       <Route path="/join" component={JoinPage} />
       <Route exact path="/questions" component={QuestionIndex} />
-      <Route path="/questions/:id" component={QuestionView} />
+      <Route exact path="/questions/:id" component={QuestionView} />
+      <Route path="/questions/:id/responses" component={ResponsesView} />
       <Route exact path="/albums" component={AlbumIndex} />
       <Route exact path="/settings" component={SettingsPage} />
     </>

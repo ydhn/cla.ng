@@ -12,6 +12,7 @@ class User < ApplicationRecord
   
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+  before_destroy :remove_identities
 
   def join_clan(params)
     return if params[:clan_id].blank? or params[:family_role_id].blank? 
@@ -73,5 +74,9 @@ class User < ApplicationRecord
 
   def email_required?
     false
+  end
+
+  def remove_identities
+    Identity.where(user_id: id).destroy_all
   end
 end

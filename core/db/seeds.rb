@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 father_role = FamilyRole.create! title: "아버지", description: "자상한 아버지!"
 mother_role = FamilyRole.create! title: "어머니", description: "상냥한 어머니!"
 son_role = FamilyRole.create! title: "아들", description: "말썽꾸러기 아들!"
@@ -15,13 +7,19 @@ Clan.destroy_all
 clan = Clan.create! title: "수연이네 가족", description: "수연이네 가족입니다."
 
 User.destroy_all
-father = User.create! email: "soo@cla.ng", password: "123456", password_confirmation: "123456"
+
+default_profile_img_url = 'https://community.smartsheet.com/sites/default/files/default_user.jpg'
+father = User.create! email: "soo@cla.ng", password: "123456", password_confirmation: "123456", 
+  name: "인생은달리기", profile_img: default_profile_img_url
 father.join_clan clan_id: clan.id, family_role_id: father_role.id
-mother = User.create! email: "psy@cla.ng", password: "123456", password_confirmation: "123456"
+mother = User.create! email: "psy@cla.ng", password: "123456", password_confirmation: "123456", 
+  name: "오늘도감사", profile_img: default_profile_img_url
 mother.join_clan clan_id: clan.id, family_role_id: mother_role.id
-son    = User.create! email: "master@cla.ng", password: "123456", password_confirmation: "123456"
+son    = User.create! email: "master@cla.ng", password: "123456", password_confirmation: "123456", 
+  name: "갓지효", profile_img: default_profile_img_url
 son.join_clan clan_id: clan.id, family_role_id: son_role.id
-daughter = User.create! email: "young@cla.ng", password: "123456", password_confirmation: "123456"
+daughter = User.create! email: "young@cla.ng", password: "123456", password_confirmation: "123456", 
+  name: "뜌요니", profile_img: default_profile_img_url
 daughter.join_clan clan_id: clan.id, family_role_id: daughter_role.id
 
 clan.albums.destroy_all
