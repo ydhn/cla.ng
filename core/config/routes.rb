@@ -4,17 +4,18 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create] do
     get "me", on: :collection, to: 'users#show'
-    get "auth/success", on: :collection, to: 'users#auth_success'
+    #get "auth/success", on: :collection, to: 'users#auth_success'
   end
   
-  devise_scope :user do
-    get "auth/kakao/callback", to: 'users/omniauth_callbacks#kakao'
-  end
-  
+  # devise_for :users, skip: :all
   devise_for :users, :controllers => {
     omniauth_callbacks: "users/omniauth_callbacks",
     sessions: "users/sessions"
   }
+  # devise_scope :user do
+  #   get "/auth/kakao", to: 'users/omniauth_callbacks#passthru'
+  #   get "/auth/kakao/callback", to: 'users/omniauth_callbacks#kakao'
+  # end  
 
   resources :family_roles, only: [:index]
   resources :albums, only: [:index, :show] do
