@@ -39,7 +39,11 @@ class PhotoForm extends Component {
     const toArray = (fileList) => Array.prototype.slice.call(fileList);
     const photos = toArray(this.state.photos).concat(toArray(photo));
     let formData = new FormData();
-    for (let i = 0; i < photos.length; i++) formData.append('photos[]', photos[i]);
+    for (let i = 0; i < photos.length; i++) {
+      const exts = photos[i].name.split('.')
+      const ext = exts[exts.length-1]
+      formData.append('photos[]', photos[i], `${i}.${ext}`);
+    }
     
     this.setState({photos}, () => 
       this.props.onChange(photos, formData)
