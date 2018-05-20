@@ -62,7 +62,6 @@ class VoiceRecordForm extends Component {
   }
 
   onNewRecording(evt) {
-    debugger
     const blob = evt.detail.recording;
     let formData = new FormData();
     var xhr = new XMLHttpRequest();
@@ -77,7 +76,6 @@ class VoiceRecordForm extends Component {
       }
     };
     xhr.send();
-    
   }
 
   startRecording = () => {

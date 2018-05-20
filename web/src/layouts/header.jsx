@@ -10,7 +10,6 @@ import HomeIcon from '@material-ui/icons/Home';
 import PhoneIcon from '@material-ui/icons/Phone';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
-import { Logo } from '../components/common/assets';
 
 const styles = {
   root: {
@@ -33,7 +32,7 @@ const styles = {
 
 class _Header extends Component {
   render() {
-    const { classes, leftActions, rightActions } = this.props;
+    const { classes, leftActions, title, rightActions } = this.props;
     return (
       <div className={classes.root}>
         <AppBar position="fixed">
@@ -42,7 +41,7 @@ class _Header extends Component {
               {leftActions}
             </div>
             <Typography variant="title" color="inherit" className={classes.flex}>
-              <Logo width="70px" height="25px" />
+              {title}
             </Typography>
             <div>
               {rightActions}

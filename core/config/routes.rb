@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   }
 
   resources :family_roles, only: [:index]
+  resources :albums, only: [:index, :show]
   resources :questions, only: [:index, :show] do
     post "/responses/:resource_type", to: 'responses#create'
   end
