@@ -39,15 +39,16 @@ class StartPage extends Component {
             <div className={classes.description}>
               우리 가족이랑 <BrandSpan>클랑</BrandSpan>
             </div>
-            <ButtonBase onClick={this.handleOpenAuth}>
+            <ButtonBase href={kakaoAuthURL}>
+              {/* onClick={this.handleOpenAuth}> */}
               <img src="https://developers.kakao.com/assets/img/about/logos/login/kr/kakao_account_login_btn_medium_narrow.png" />
             </ButtonBase>
-            <AuthDialog
+            {/* <AuthDialog
               authUrl={kakaoAuthURL}
               open={isDialogOpened}
               onClose={this.handleClose}
               onSuccess={this.handleAuthSuccess}
-            />
+            /> */}
           </div>
         )}
       </UserConsumer>
