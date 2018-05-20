@@ -32,7 +32,7 @@ class User < ApplicationRecord
   def self.find_for_oauth(auth, signed_in_resource = nil)
     # user와 identity가 nil이 아니라면 받는다
     identity = Identity.find_for_oauth(auth)
-    user = signed_in_resource ? signed_in_resource : identity.user
+    user = identity.user
     
     if user.nil? # user가 nil이라면 새로 만든다.
       email = auth.info.email # 이미 있는 이메일인지 확인한다.
