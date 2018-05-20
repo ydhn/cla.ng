@@ -65,8 +65,8 @@ class CreateInitialDatabase < ActiveRecord::Migration[5.1]
     create_table :albums do |t|
       t.integer :clan_id
       t.string :title
+      t.string :color
       t.text :description
-      t.string :color_hex
       t.datetime :timestamp
 
       t.timestamps
@@ -81,7 +81,7 @@ class CreateInitialDatabase < ActiveRecord::Migration[5.1]
       t.text :description
       t.string :title
       t.datetime :timestamp
-
+      
       t.timestamps
     end
 
