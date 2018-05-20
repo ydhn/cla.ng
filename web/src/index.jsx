@@ -39,7 +39,7 @@ class App extends Component {
   }
 
   loadUser = (reload = false, newUser = null) => {
-    if (newUser) {
+    if (newUser !== null) {
       this.setState({ user: newUser });
       return;
     }

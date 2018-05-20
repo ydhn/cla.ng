@@ -1,7 +1,7 @@
 class AlbumsController < ApplicationController
   def index
     clan = current_user.clan
-    @albums = clan.albums.order(:updated_at)
+    @albums = clan.albums.order(updated_at: :desc)
     render json: (Jbuilder.encode do |json|
       json.array! @albums do |album|
         json.extract! album, :id, :title, :description, :color, :created_at

@@ -62,7 +62,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @identity = Identity.find_for_oauth(auth)
     @user = User.find(current_user.id)
     if @user.persisted?
-      session[:referrer] || '/users/auth/success'
+      session[:referrer] || 'http://cla.ng' #'/users/auth/success'
     else
       '/users/auth/failure'
     end

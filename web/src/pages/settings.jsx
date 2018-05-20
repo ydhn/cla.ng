@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -10,6 +11,8 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import Switch from '@material-ui/core/Switch';
 import WifiIcon from '@material-ui/icons/Wifi';
 import BluetoothIcon from '@material-ui/icons/Bluetooth';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { fetchAPI } from '../utils';
 
 import { DefaultLayout } from '../layouts/default';
 
@@ -28,20 +31,11 @@ class SettingsPage extends Component {
       <DefaultLayout>
         <div className={classes.root}>
           <List subheader={<ListSubheader>내 정보</ListSubheader>}>
-            <ListItem>
+            <ListItem onClick={this.logout}>
               <ListItemIcon>
-                <WifiIcon />
+                <ExitToAppIcon />
               </ListItemIcon>
-              <ListItemText primary="Wi-Fi" />
-              <ListItemSecondaryAction>
-                
-              </ListItemSecondaryAction>
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <BluetoothIcon />
-              </ListItemIcon>
-              <ListItemText primary="Bluetooth" />
+              <ListItemText primary="로그아웃" />
               <ListItemSecondaryAction>
                 
               </ListItemSecondaryAction>
@@ -51,6 +45,12 @@ class SettingsPage extends Component {
       </DefaultLayout>  
     );
   }
+
+  logout = () => {
+    window.reloadUser(false);
+    fetchAPI('/users/sign_out', { method: 'DELETE' })
+      .then(() => this.props.history.push('/'))
+  }
 }
 
-export default withStyles(styles)(SettingsPage);
+export default withRouter(withStyles(styles)(SettingsPage));
