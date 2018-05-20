@@ -23,6 +23,8 @@ gem 'omniauth-oauth2'
 gem 'oauth2'
 gem 'omniauth-kakao', :git => 'git://github.com/ydhn/omniauth-kakao'
 gem 'dotenv-rails'
+gem 'execjs'
+gem 'therubyracer'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
