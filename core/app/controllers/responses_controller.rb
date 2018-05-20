@@ -11,6 +11,7 @@ class ResponsesController < ApplicationController
     
     if params[:resource_type] == 'Photo'
       resource.photo = params[:photos][0]
+      resource.user = current_user
       resource.title = question.title
       resource.description = "#{question.title}에 대한 #{user.family_role.title}의 답변"
       resource.album_id = clan.mission_album.id

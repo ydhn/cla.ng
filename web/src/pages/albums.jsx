@@ -58,7 +58,10 @@ class AlbumsPage extends Component {
                 };
 
                 return (
-                  <Paper elevation={5} className={classes.albumContainer} style={albumContainerStyle}>
+                  <Paper elevation={5}
+                    className={classes.albumContainer}
+                    style={albumContainerStyle}
+                    onClick={() => this.redirectTo(album.id)}>
                     <div style={{ display: 'flex', flexDirection: 'column', flexFlow: 'row' }}>
                       <Paper elevation={3} style={{ width: '5px', backgroundColor: Color(album.color).darken(0.1) }} />
                       <div style={{ flexGrow: 1 }}>
@@ -86,6 +89,8 @@ class AlbumsPage extends Component {
       </WithoutHeaderLayout>
     );
   }
+
+  redirectTo = (id) => this.props.history.push(`/albums/${id}`);
 }
 
 export default withRouter(withStyles(styles)(AlbumsPage));

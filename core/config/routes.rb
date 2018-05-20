@@ -17,7 +17,10 @@ Rails.application.routes.draw do
   }
 
   resources :family_roles, only: [:index]
-  resources :albums, only: [:index, :show]
+  resources :albums, only: [:index, :show] do
+    post "/photos", on: :member, to: 'photos#create'
+    get "/photos/:photo_id", on: :member, to: 'photos#show'
+  end
   resources :questions, only: [:index, :show] do
     post "/responses/:resource_type", to: 'responses#create'
   end

@@ -9,6 +9,8 @@ import ResponsesView from './pages/responses';
 import ResourceEdit from './components/resources/new';
 import AlbumIndex from './pages/albums';
 import AlbumView from './pages/album';
+import AlbumPhotoEdit from './components/albums/photos/edit';
+import AlbumPhotoView from './components/albums/photos/view';
 import SettingsPage from './pages/settings';
 
 const routes = (
@@ -23,6 +25,8 @@ const routes = (
       <Route path="/questions/:id/responses/new/:resource_type" component={ResourceEdit} />
       <Route exact path="/albums" component={AlbumIndex} />
       <Route exact path="/albums/:id" component={AlbumView} />
+      <Route exact path="/albums/:id/new" component={AlbumPhotoEdit} />
+      <Route exact path="/albums/:id/photos/:photo_id" component={AlbumPhotoView} />
       <Route exact path="/settings" component={SettingsPage} />
     </>
   </Router>

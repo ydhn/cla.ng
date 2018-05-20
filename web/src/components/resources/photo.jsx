@@ -7,7 +7,6 @@ import { mainTheme } from '../../index';
 
 class PhotoForm extends Component {
   static propTypes = {
-    resource: PropTypes.object,
     onChange: PropTypes.func,
   }
 
@@ -19,7 +18,7 @@ class PhotoForm extends Component {
   }
 
   render() {
-    const { resource, onChange } = this.props;
+    const { onChange } = this.props;
 
     return (
       <div>

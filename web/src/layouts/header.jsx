@@ -19,6 +19,7 @@ const styles = {
   flex: {
     flex: 1,
     textAlign: 'center',
+    color: 'white',
   },
   button: {
     padding: "8px 8px",
@@ -27,6 +28,7 @@ const styles = {
   toolbar: {
     display: 'flex',
     justifyContent: '',
+    color: 'white',
   }
 };
 

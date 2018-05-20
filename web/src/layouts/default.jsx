@@ -17,7 +17,7 @@ class DefaultLayout extends Component {
   }
 
   render() {
-    const { headerLeftActions, headerRightActions } = this.props;
+    const { headerLeftActions, headerTitle, headerRightActions } = this.props;
 
     return (
       <div className="default-layout">
