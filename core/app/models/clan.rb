@@ -6,11 +6,12 @@ class Clan < ApplicationRecord
   after_create :create_mission_album
 
   def mission_album
-    self.albums.find_by(title: "오늘 미션 앨범")
+    self.albums.first
   end
 
   private
   def create_mission_album
+    byebug
     self.albums.create! title: "오늘 미션 앨범", description: "우리 가족이 미션으로 올린 사진들", color: "#F79F8C"
   end
 end

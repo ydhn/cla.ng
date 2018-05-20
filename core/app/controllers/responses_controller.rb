@@ -2,7 +2,7 @@ class ResponsesController < ApplicationController
   
   def create
     clan = current_user.clan
-    question = Question.find(question_id)
+    question = Question.find(params[:question_id])
     resource_class = params[:resource_type].constantize
     allowed_params = params.permit(:title, :description) if params[:resource_type] == 'Article'
     allowed_params = params.permit(:title, :description) if params[:resource_type] == 'Photo'
@@ -13,7 +13,7 @@ class ResponsesController < ApplicationController
       resource.photo = params[:photos][0]
       resource.user = current_user
       resource.title = question.title
-      resource.description = "#{question.title}에 대한 #{user.family_role.title}의 답변"
+      resource.description = "#{question.title}에 대한 #{resource.user.family_role.title}의 답변"
       resource.album_id = clan.mission_album.id
       resource.save!
     end

@@ -128,7 +128,7 @@ class QuestionView extends Component {
                 </div>
                 <CardMedia
                   style={{backgroundColor: '#444', height: "calc(100vh - 180px)", display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}
-                  image="https://qqq.images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=612621fd686897b4812287430c8be9db&auto=format&fit=crop&w=2104&q=80">
+                  image="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=612621fd686897b4812287430c8be9db&auto=format&fit=crop&w=2104&q=80">
 
                   <CardContent>
                     <Typography className={classes.title} gutterBottom variant="headline" component="h2">
