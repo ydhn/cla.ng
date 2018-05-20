@@ -12,6 +12,7 @@ import MicIcon from '@material-ui/icons/Mic';
 import EditIcon from '@material-ui/icons/Edit';
 import InsertPhotoIcon from '@material-ui/icons/InsertPhoto'
 
+import { API_URL } from '../constants';
 import { QuestionTitle } from './question';
 import { BrandSpan } from '../components/common/widgets';
 import { WithoutHeaderLayout } from '../layouts/default';
@@ -58,7 +59,13 @@ const styles = {
   },
   articleContentPre: {
     margin: 0,
-  }
+  },
+  articleContentImg: {
+    width: '100%',
+  },
+  articleContentAudio: {
+    width: '100%',
+  },
 };
 
 
@@ -141,17 +148,34 @@ class _Article extends Component {
 
 const Article = withStyles(styles)(_Article);
 
-class Photo extends Component {
+class _Photo extends Component {
   render() {
-    return null;
+    const { resource, classes } = this.props;
+    return (
+      <div className={classes.articleContent}>
+        <img className={classes.articleContentImg} src={`${API_URL}${resource.photo?.url}`} />
+      </div>
+    )
   }
 }
 
-class VoiceRecord extends Component {
+const Photo = withStyles(styles)(_Photo);
+
+class _VoiceRecord extends Component {
   render() {
-    return null;
+    const { resource, classes } = this.props;
+    console.log(resource);
+    return (
+      <div className={classes.articleContent}>
+        <audio className={classes.articleContentAudio}
+          preload controls type='video/webm'
+          src={`${API_URL}${resource.sound?.url}`} />
+      </div>
+    )
   }  
 }
+
+const VoiceRecord = withStyles(styles)(_VoiceRecord);
 
 class ResponseContent extends Component {
   static propTypes = {
@@ -163,9 +187,9 @@ class ResponseContent extends Component {
     const { type, resource } = this.props;
 
     switch (type) {
-      case 'Article': return <Article resource={resource} />
+      case 'VoiceRecord': return <VoiceRecord resource={resource} />
       case 'Photo': return <Photo resource={resource} />
-      case 'VoiceRecord': <VoiceRecord resource={resource} />
+      default: return <Article resource={resource} />
     }
   }
 }

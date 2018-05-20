@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { objectToFormData } from '../../utils';
 
 class ArticleForm extends Component {
   static propTypes = {
@@ -32,7 +33,7 @@ class ArticleForm extends Component {
 
   handleChange = ({ target }) => {
     const resource = { title: "", description: target.value };
-    this.props.onChange(resource);
+    this.props.onChange(resource, objectToFormData(resource));
   }
 }
 

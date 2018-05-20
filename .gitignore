@@ -41,3 +41,4 @@ core/log/development.log
 core/Gemfile.lock
 core/tmp/
 core/.env
+core/public/uploads

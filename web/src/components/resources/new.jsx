@@ -60,12 +60,13 @@ class ResourceEdit extends Component {
     super(props);
     this.state = {
       resource: {},
+      body: null,
     };
   }
 
   render() {
     const { questionId, date, classes, match } = this.props;
-    const { resource } = this.state;
+    const { resource, body } = this.state;
     const type = match.params.resource_type;
 
     return (
@@ -75,7 +76,9 @@ class ResourceEdit extends Component {
             <div style={{ padding: "2rem 1rem" }}>
               <AppBar position="relative" className={classes.titleBar}>
                 <div>{date.format("MM.DD")}</div>
-                <Button className={classes.button}
+                <Button 
+                  disabled={!body}
+                  className={classes.button}
                   onClick={this.handleSubmit}>
                   완료
                 </Button>
@@ -116,15 +119,16 @@ class ResourceEdit extends Component {
     }
   }
 
-  handleChange = (resource) => this.setState({ resource });
+  handleChange = (resource, body) => this.setState({ resource, body });
   handleSubmit = () => {
     const { match } = this.props;
     const type = match.params.resource_type;
-    const { resource } = this.state;
-    fetchAPI(`/questions/${match.params.id}/responses/${type}`, {
-      method: 'POST',
-      body: objectToFormData(resource)
-    }).then(response => this.redirectToResponses(match.params.id));
+    const { body } = this.state;
+    const compatibleForFormData = (type === 'Article') ? {} : {'Content-Type': 'multipart/form-data'}
+    const options = { ...compatibleForFormData, method: 'POST', body };
+
+    fetchAPI(`/questions/${match.params.id}/responses/${type}`, options)
+      .then(response => this.redirectToResponses(match.params.id));
   }
 
   redirectToResponses = (id) => this.props.history.push(`/questions/${id}/responses/`);
