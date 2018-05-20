@@ -59,6 +59,7 @@ const styles = {
   },
   articleContentPre: {
     margin: 0,
+    whiteSpace: 'pre-wrap',
   },
   articleContentImg: {
     width: '100%',

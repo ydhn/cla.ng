@@ -28,7 +28,7 @@ class PhotoForm extends Component {
           withLabel={false}
           buttonText="여기를 눌러 사진 선택"
           onChange={this.onDrop}
-          imgExtension={['.jpg', '.gif', '.png', '.gif']}
+          imgExtension={['.jpg', '.jpeg', '.gif', '.png', '.gif']}
           maxFileSize={5242880}
         />
       </div>
