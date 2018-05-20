@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   #   get "/auth/kakao/callback", to: 'users/omniauth_callbacks#kakao'
   # end  
 
+  resources :users do
+    get "auth/success", on: :collection, to: 'users#auth_success'
+  end
+
   resources :family_roles, only: [:index]
   resources :albums, only: [:index, :show] do
     post "/photos", on: :member, to: 'photos#create'
