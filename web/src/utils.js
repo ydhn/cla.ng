@@ -1,5 +1,9 @@
 import { stringify as qstringify } from 'query-string';
 import { API_URL } from './constants';
+import moment from 'moment'
+import 'moment/locale/ko'
+
+moment.locale('ko')
 
 const DEFAULT_HEADERS = {
   'X-Requested-With': 'XMLHttpRequest',

@@ -62,14 +62,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @identity = Identity.find_for_oauth(auth)
     @user = User.find(current_user.id)
     if @user.persisted?
-      session[:referrer] || 'http://cla.ng'
-      # if @identity.provider == "kakao"
-        
-      # else
-      #   register_info1_path
-      # end
+      session[:referrer] || '/users/auth/success'
     else
-      visitor_main_path
+      '/users/auth/failure'
     end
   end
 end

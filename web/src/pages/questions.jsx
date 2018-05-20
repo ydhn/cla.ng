@@ -126,7 +126,12 @@ class QuestionItem extends Component {
         <ListItem button onClick={onClick}>
           <div style={{ width: 'calc(100% - 40px)' }}>
             <ListItemText style={{ paddingRight: 0 }}
-              primary={<QuestionTitle inline normalStyle={{ color: 'black' }} text={question} />} />
+              primary={
+                <QuestionTitle inline
+                  normalStyle={{ color: 'black' }}
+                  text={question} />
+              }
+            />
           </div>
           <ListItemIcon>
             <SpeechBubble>{responses}</SpeechBubble>

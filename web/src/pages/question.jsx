@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Get from '../components/common/get';
+import moment from 'moment';
 
 import { withRouter } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
@@ -13,7 +14,7 @@ import InsertPhotoIcon from '@material-ui/icons/InsertPhoto'
 
 import { BrandSpan } from '../components/common/widgets';
 import { WithoutHeaderLayout } from '../layouts/default';
-import { mainTheme } from '..';
+import { mainTheme } from '../index';
 
 const styles = {
   card: {
@@ -21,13 +22,15 @@ const styles = {
   },
   title: {
     marginTop: '2rem',
+    marginLeft: '0.5rem',
     color: 'white',
     fontWeight: 'bold',
   },
   description: {
     fontSize: '0.4em',
+    marginLeft: '0.5rem',
     color: 'white',
-    width: '60%',
+    width: '65%',
     wordBreak: 'keep-all',
   },
   actions: {
@@ -44,8 +47,8 @@ const styles = {
   },
 };
 
-export const Placeholder = (props) => (
-  <div style={{
+export const Placeholder = ({key}) => (
+  <div key={key} style={{
     display: 'inline-block',
     transform: 'translate(0, 3px)',
     width: '3em', height: '1em',
@@ -60,6 +63,8 @@ export class QuestionTitle extends Component {
     text: PropTypes.string.isRequired,
     inline: PropTypes.bool,
     noStyle: PropTypes.bool,
+    emphasisStyle: PropTypes.object,
+    normalStyle: PropTypes.object,
   };
 
   static defaultProps = {
@@ -71,29 +76,30 @@ export class QuestionTitle extends Component {
   
   render() {
     const { text, inline, noStyle } = this.props;
+    
     return (
-      <>
+      <Fragment>
         {text.split('\\n').map((line, i) =>
-          <>
-            {this.renderPartial(line, i*2)}
-            {inline ? <span> </span> : <br key={i * 2 + 1} />}
-          </>
+          <Fragment key={i}>
+            {this.renderPartial(line)}
+            {inline ? <span> </span> : <br />}
+          </Fragment>
         )}
-      </>  
+      </Fragment>
     )    
   }
   
-  renderPartial = (line, key) => {
-    const { emphasisStyle, normalStyle } = this.props;
+  renderPartial = (line) => {
+    const { emphasisStyle, normalStyle, noStyle } = this.props;
 
     let shouldBeStyled = true;
     return line.split('"').map((chunk, i) => {
       if (chunk === "@") {
-        return <Placeholder />;
+        return <Placeholder key={i} />;
       }
       shouldBeStyled = !shouldBeStyled;
       return (
-        <span style={shouldBeStyled ? emphasisStyle : normalStyle} key={key * 100 + i}>
+        <span key={i} style={(shouldBeStyled && !noStyle) ? emphasisStyle : normalStyle}>
           {chunk}
         </span>
       );
@@ -133,19 +139,23 @@ class QuestionView extends Component {
                     </Typography>
                   </CardContent>
                   <CardActions className={classes.actions}>
-                    <Button className={classes.actionButton} variant="fab">
+                    <Button variant="fab"
+                      onClick={() => this.redirectTo(q.id, "VoiceRecord")}
+                      className={classes.actionButton}>
                       <MicIcon />
                     </Button>
-                    <Button className={classes.actionButton} variant="fab">
+                    <Button variant="fab"
+                      onClick={() => this.redirectTo(q.id, "Article")}
+                      className={classes.actionButton}>
                       <EditIcon />  
                     </Button>
-                    <Button className={classes.actionButton} variant="fab">
+                    <Button variant="fab"
+                      onClick={() => this.redirectTo(q.id, "Photo")}
+                      className={classes.actionButton}>
                       <InsertPhotoIcon />  
                     </Button>
                   </CardActions>
-                </CardMedia>
-                
-                
+                </CardMedia>  
               </Card>
             </div>            
           )}
@@ -154,6 +164,8 @@ class QuestionView extends Component {
       </WithoutHeaderLayout>
     );
   }
+
+  redirectTo = (id, type) => this.props.history.push(`/questions/${id}/responses/new/${type}`);
 }
 
 export default withRouter(withStyles(styles)(QuestionView));

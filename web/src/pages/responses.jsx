@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Get from '../components/common/get';
+import moment from 'moment';
 
 import { withRouter } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
@@ -14,8 +15,8 @@ import InsertPhotoIcon from '@material-ui/icons/InsertPhoto'
 import { QuestionTitle } from './question';
 import { BrandSpan } from '../components/common/widgets';
 import { WithoutHeaderLayout } from '../layouts/default';
-import { mainTheme } from '..';
-import { Paper, Avatar } from '@material-ui/core';
+import { mainTheme } from '../index';
+import { Paper, Avatar, AppBar } from '@material-ui/core';
 
 const styles = {
   paper: {
@@ -30,6 +31,12 @@ const styles = {
   avatar: {
     width: '3rem',
     height: '3rem',
+  },
+  titleBar: {
+    display: 'block',
+    textAlign: 'center',
+    marginBottom: '1rem',
+    padding: '1.5rem',
   },
   userContainer: {
     height: '4em',
@@ -49,6 +56,9 @@ const styles = {
   articleContent: {
     marginLeft: '4rem',
   },
+  articleContentPre: {
+    margin: 0,
+  }
 };
 
 
@@ -67,9 +77,14 @@ class ResponsesView extends Component {
         <Get url={`/questions/${match.params.id}`}>
           {({ title, responses }) => (
             <div style={{ padding: "2rem 1rem" }}>
+              <AppBar position="relative" className={classes.titleBar}>
+                <QuestionTitle text={title} inline noStyle />
+              </AppBar>
               {responses.map((r, i) =>
                 <Paper className={classes.paper}>
-                  <ResponseUser of={r.user} />
+                  <ResponseUser
+                    of={r.user}
+                    createdAt={r.resource.created_at} />
                   <ResponseContent
                     type={r.resource_type}
                     resource={r.resource} />
@@ -85,7 +100,7 @@ class ResponsesView extends Component {
               
 class _ResponseUser extends Component {
   render() {
-    const { of: user, classes } = this.props;
+    const { of: user, createdAt, classes } = this.props;
     
     return (
       <Typography>
@@ -99,7 +114,7 @@ class _ResponseUser extends Component {
               {user.name}
             </div>
             <div className={classes.familyRole}>
-              {user.familyRole}
+              {user.familyRole} / {moment(createdAt).calendar()}
             </div>
           </div>
         </div>
@@ -110,14 +125,15 @@ class _ResponseUser extends Component {
 
 const ResponseUser = withStyles(styles)(_ResponseUser);
 
-
 class _Article extends Component {
   render() {
     const { resource, classes } = this.props;
 
     return (
       <Typography className={classes.articleContent}>
-        {resource.description}
+        <pre className={classes.articleContentPre}>
+          {resource.description}
+        </pre>
       </Typography>
     );
   }

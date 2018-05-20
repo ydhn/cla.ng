@@ -12,4 +12,8 @@ class UsersController < ApplicationController
     
     render json: current_user_json
   end
+
+  def auth_success
+    return render(template: 'users/auth_success')
+  end
 end

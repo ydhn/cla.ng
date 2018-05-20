@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "landing_page#index"
+
   resources :users, only: [:create] do
     get "me", on: :collection, to: 'users#show'
+    get "auth/success", on: :collection, to: 'users#auth_success'
   end
   
   devise_scope :user do
@@ -15,5 +17,7 @@ Rails.application.routes.draw do
   }
 
   resources :family_roles, only: [:index]
-  resources :questions, only: [:index, :show]
+  resources :questions, only: [:index, :show] do
+    post "/responses/:resource_type", to: 'responses#create'
+  end
 end
