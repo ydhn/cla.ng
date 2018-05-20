@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 import Get from '../components/common/get';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+import PhotoAlbumIcon from '@material-ui/icons/PhotoAlbum';
 import { withRouter } from 'react-router-dom';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -53,12 +55,20 @@ class AlbumsPage extends Component {
                   </GridListTile>
                 ))}
               </GridList>
+              <Button fullWidth color="primary" onClick={() => this.handlePhotoAlbumClick(album.title)}>
+                <PhotoAlbumIcon />&nbsp;
+                포토북 제작하기
+              </Button>
             </div>
           </DefaultLayout>  
         )}
       </Get>
       
     );
+  }
+
+  handlePhotoAlbumClick = (title) => {
+    window.confirm(`"${title}" 앨범을 포토북으로 제작 신청하시겠습니까?`);
   }
 }
 
