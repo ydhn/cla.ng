@@ -11,6 +11,6 @@ class Clan < ApplicationRecord
 
   private
   def create_mission_album
-    self.albums.create! title: "오늘 미션 앨범", description: "우리 가족이 미션으로 올린 사진들"
+    self.albums.create! title: "오늘 미션 앨범", description: "우리 가족이 미션으로 올린 사진들", color: "#F79F8C"
   end
 end

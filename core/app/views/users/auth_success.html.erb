@@ -3,3 +3,8 @@
     잠시만 기다려주세요...
   </div>
 </div>
+<script>
+  window.onload = function() {
+    window.parent.postMessage({ success: true }, '*');
+  };
+</script>

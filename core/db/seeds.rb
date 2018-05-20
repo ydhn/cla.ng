@@ -25,7 +25,6 @@ daughter.join_clan clan_id: clan.id, family_role_id: daughter_role.id
 clan.albums.destroy_all
 clan.albums.create! title: "리마인드 웨딩", description: "2018.05.13", color: "#FFEDED"
 clan.albums.create! title: "제주도 여행", description: "2017.07.13~", color: "#EDF9FF"
-clan.albums.create! title: "오늘 미션 앨범", description: "2017.06~", color: "#F79F8C"
 
 Question.destroy_all
 bucketlist = Question.create! title: '올해의\n"버킷리스트"는?', description: '버킷리스트란 죽기 전에 꼭해고 싶은 일들을 적은 목록입니다. 올해 당신이 꼭 이루고싶은 버킷리스트는 무엇인가요?'

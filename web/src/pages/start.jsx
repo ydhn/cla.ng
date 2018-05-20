@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter, Redirect } from 'react-router-dom';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 import { API_URL } from '../constants';
 import { UserConsumer } from '../components/users/context';
@@ -9,7 +10,7 @@ import { mainTheme } from '../index';
 import { BrandSpan } from '../components/common/widgets';
 import { DefaultLayout } from '../layouts/default';
 import { GlyphLogo, Logo } from '../components/common/assets';
-import ButtonBase from 'material-ui/ButtonBase';
+import AuthDialog from '../components/dialogs/auth';
 
 class StartPage extends Component {
   static propTypes = {
@@ -19,9 +20,15 @@ class StartPage extends Component {
     classes: PropTypes.object,
   };
 
+  constructor(props) {
+    super(props);
+    this.state = { isDialogOpened: false };
+  }
+
   render() {
-    const kakaoLoginURL = `${API_URL}/users/auth/kakao`;
+    const kakaoAuthURL = `${API_URL}/users/auth/kakao`;
     const { classes } = this.props;
+    const { isDialogOpened } = this.state;
 
     return (
       <UserConsumer skipEnsureLogin>
@@ -32,13 +39,32 @@ class StartPage extends Component {
             <div className={classes.description}>
               우리 가족이랑 <BrandSpan>클랑</BrandSpan>
             </div>
-            <ButtonBase href={kakaoLoginURL}>
+            <ButtonBase onClick={this.handleOpenAuth}>
               <img src="https://developers.kakao.com/assets/img/about/logos/login/kr/kakao_account_login_btn_medium_narrow.png" />
             </ButtonBase>
+            <AuthDialog
+              authUrl={kakaoAuthURL}
+              open={isDialogOpened}
+              onClose={this.handleClose}
+              onSuccess={this.handleAuthSuccess}
+            />
           </div>
         )}
       </UserConsumer>
     );
+  }
+
+  handleOpenAuth = () => {
+    this.setState({ isDialogOpened: true });
+  }
+
+  handleClose = () => {
+    this.setState({ isDialogOpened: false });
+  }
+
+  handleAuthSuccess = () => {
+    window.reloadUser();
+    setTimeout(() => this.props.history.push('/join'), 1000);
   }
 }
 
