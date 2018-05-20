@@ -43,12 +43,12 @@ Question.create! title: '제일 기억에 남는 순간은?', description:'당�
 Response.destroy_all
 Article.destroy_all
 
-a = Article.create! title: "버킷리스트!", description: "1. 다이어트\n2. 유럽여행"
+a = Article.create! title: "마라톤~~", description: "가족이랑 마라톤 대회 나가기~~"
 response = father.responses.create! resource: a, question_id: bucketlist.id, clan_id: clan.id
 
 a = Article.create! title: "나의 버킷리스트", description: "딸들이랑 같이 리마인드 웨딩 사진 찍고 싶어요~~"
 response = mother.responses.create! resource: a, question_id: bucketlist.id, clan_id: clan.id
 
-a = Article.create! title: "마라톤~~", description: "가족이랑 마라톤 대회 나가기~~"
+a = Article.create! title: "버킷리스트!", description: "1. 다이어트\n2. 유럽여행"
 response = daughter.responses.create! resource: a, question_id: bucketlist.id, clan_id: clan.id
 
