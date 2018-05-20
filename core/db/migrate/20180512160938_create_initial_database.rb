@@ -66,6 +66,7 @@ class CreateInitialDatabase < ActiveRecord::Migration[5.1]
       t.integer :clan_id
       t.string :title
       t.text :description
+      t.string :color_hex
       t.datetime :timestamp
 
       t.timestamps
@@ -88,6 +89,7 @@ class CreateInitialDatabase < ActiveRecord::Migration[5.1]
       t.string :title
       t.text :description
       t.integer :photo_id
+      t.datetime :timestamp 
 
       t.timestamps
     end
