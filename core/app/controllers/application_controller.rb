@@ -2,7 +2,8 @@ require 'clang_exceptions'
 
 class ApplicationController < ActionController::Base
   include ClangExceptions
-  
+  after_action :allow_iframe
+
   #protect_from_forgery with: :exception -> CSRF 문제
 
   def current_user_json
@@ -12,5 +13,10 @@ class ApplicationController < ActionController::Base
         json.clan current_user.clan
       end
       : nil
+  end
+
+  private
+  def allow_iframe
+    response.headers['X-Frame-Options'] = 'ALLOWALL'
   end
 end

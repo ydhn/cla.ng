@@ -17,9 +17,7 @@ module Core
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-    config.action_dispatch.default_headers = {
-      'X-Frame-Options' => 'ALLOWALL'
-    }
+
     config.middleware.insert_after Rails::Rack::Logger, Rack::Cors, debug: Rails.env.development?, logger: (-> { Rails.logger }) do
       allow do
         origins *API_ORIGIN_HOSTS
