@@ -6,7 +6,7 @@
     "start": "npm run build",
     "build": "rimraf dist && webpack --progress --mode=development && webpack-dev-server --mode=development --content-base src/ --inline --hot --history-api-fallback --port 4001",
     "dist": "rimraf dist && webpack --progress --mode=production && ncp src/index.html dist/index.html",
-    "deploy": "API_URL='http://gonzaga.yun.do:61479' npm run dist && cd ./dist && cp index.html 200.html && cp index.html 404.html && surge -p ./ -d http://cla.ng"
+    "deploy": "API_URL='http://gonzaga.yun.do:3000' npm run dist && cd ./dist && cp index.html 200.html && cp index.html 404.html && surge -p ./ -d http://cla.ng"
   },
   "dependencies": {
     "@babel/code-frame": "^7.0.0-beta.46",
