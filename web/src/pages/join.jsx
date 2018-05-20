@@ -95,10 +95,11 @@ class JoinPage extends Component {
   handleChange = (name, value) => this.setState({ form: { ...this.state.form, [name]: value } });
   handleClick = () => {
     let { form } = this.state;
+    debugger
     form = {
       ...form,
       name: this.nameField.value,
-      family_role_id: this.frSelector.value,
+      family_role_id: form.family_role_id ? form.family_role_id : this.frSelector.value,
     };
   
     fetchAPI('/users', {
