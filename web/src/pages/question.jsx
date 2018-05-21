@@ -135,7 +135,12 @@ class QuestionView extends Component {
                       <QuestionTitle text={q.title} />
                     </Typography>
                     <Typography className={classes.description} component="p">
-                      {q.description}
+                      {q.description}<br /><br />
+                      <Button
+                        style={{color: 'white'}}  
+                        onClick={() => this.redirectToResponse(match.params.id)}>
+                        우리 가족의 답변 보기
+                      </Button>
                     </Typography>
                   </CardContent>
                   <CardActions className={classes.actions}>
@@ -166,6 +171,7 @@ class QuestionView extends Component {
   }
 
   redirectTo = (id, type) => this.props.history.push(`/questions/${id}/responses/new/${type}`);
+  redirectToResponse = (id) => this.props.history.push(`/questions/${id}/responses`);
 }
 
 export default withRouter(withStyles(styles)(QuestionView));

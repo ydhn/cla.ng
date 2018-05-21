@@ -40,19 +40,26 @@ class VoiceRecordForm extends Component {
     const { resource, onChange } = this.props;
 
     return (
-      <div>
+      <div style={{ textAlign: 'center' }}>
         <div id="peak-meter-raw" style={{
-          width: '5em', height: '10em', margin: '1em 0', border: '1px solid gray'
+          display: 'inline-block',
+          margin: '1em 0', border: '1px solid gray',
+          width: '5em', height: '10em',
         }}></div>
-        <Button variant="fab"
-          onClick={this.startRecording}>
-          <MicIcon />
-        </Button>
+        <div>
+          <Button variant="fab"
+            onClick={this.startRecording}>
+            <MicIcon />
+          </Button>
+          &nbsp;&nbsp;
+          <Button variant="fab"
+            onClick={this.stopRecording}>
+            <StopIcon />
+          </Button>
 
-        <Button variant="fab"
-          onClick={this.stopRecording}>
-          <StopIcon />
-        </Button>
+        </div>
+        
+        
       </div>
     )
   }
