@@ -294,6 +294,7 @@ export default class RecorderService {
     let blob = new Blob(this.chunks, {'type': this.chunkType})
     let blobUrl = URL.createObjectURL(blob)
     const recording = {
+      blob: blob,
       ts: new Date().getTime(),
       blobUrl: blobUrl,
       mimeType: blob.type,

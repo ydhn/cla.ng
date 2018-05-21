@@ -72,17 +72,19 @@ class VoiceRecordForm extends Component {
   onNewRecording(evt) {
     const blob = evt.detail.recording;
     let formData = new FormData();
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', blob.blobUrl, true);
-    xhr.responseType = 'blob';
-    xhr.onload = (e) => {
-      if (xhr.status == 200) {
-        const myBlob = xhr.response;
-        const fileOfBlob = new File([myBlob], 'record.webm');    
-        formData.append('sound', fileOfBlob);
-        this.props.onChange({}, formData);
-      }
-    };
+    // var xhr = new XMLHttpRequest();
+    // xhr.open('GET', blob.blobUrl, true);
+    // xhr.responseType = 'blob';
+    // xhr.onload = (e) => {
+    //   if (xhr.status == 200) {
+    //     const myBlob = xhr.response;
+    //     const fileOfBlob = new File([myBlob], 'record.webm');    
+    //     formData.append('sound', fileOfBlob);
+    //     this.props.onChange({}, formData);
+    //   }
+    // };
+    formData.append('sound', blob.blob, 'record.webm');
+    this.props.onChange({}, formData);
     xhr.send();
   }
 
