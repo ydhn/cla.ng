@@ -28,6 +28,7 @@ class VoiceRecordForm extends Component {
   }
 
   componentDidMount() {
+    navigator.mediaDevices.getUserMedia({ video: false, audio: true });
     this.peakMeterRawEl = document.getElementById('peak-meter-raw')
     this.recorderSrvc.onGraphSetupWithInputStream = (inputStreamNode) => {
       this.meterNodeRaw = this.webAudioPeakMeter1.createMeterNode(inputStreamNode, this.recorderSrvc.audioCtx)
