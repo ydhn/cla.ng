@@ -194,12 +194,15 @@ const Photo = withStyles(styles)(_Photo);
 class _VoiceRecord extends Component {
   render() {
     const { resource, classes } = this.props;
-    console.log(resource);
+    
     return (
       <div className={classes.articleContent}>
-        <audio className={classes.articleContentAudio}
+        <audio preload="auto" controls className={classes.articleContentAudio}>
+          <source src={`${API_URL}${resource.sound?.url}`} type="video/webm" />
+        </audio>
+        {/* <audio className={classes.articleContentAudio}
           preload controls type='video/webm'
-          src={`${API_URL}${resource.sound?.url}`} />
+          src={`${API_URL}${resource.sound?.url}`} /> */}
       </div>
     )
   }  
