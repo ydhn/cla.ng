@@ -98,11 +98,40 @@ class ResponsesView extends Component {
                     resource={r.resource} />
                 </Paper>
               )}
+              {this.renderRecommendation(responses)}
             </div>
           )}
         </Get>
       </WithoutHeaderLayout>
     );
+  }
+
+  renderRecommendation = (responses) => {
+    const { classes } = this.props;
+    let flag = false;
+    for (let i = 0; i < responses.length; i++) {
+      if (responses[i].resource?.description?.includes("홍콩")) {
+        flag = true;
+        break;
+      }
+    }
+
+    if (flag) {
+      return (
+        <Paper className={classes.paper}>
+          <div style={{ fontSize: "1rem", color: "gray", marginBottom: "0.5rem" }}>
+            이런 상품은 어떠세요?<br/>
+            우리 가족에게 딱 맞는 여행 상품!
+          </div>
+          <img src="http://www.penchat.net/wp-content/uploads/2016/05/RISE-logo-570x315.png" style={{ width: '100%' }} />
+          <div style={{ fontSize: "1rem" }}>
+            RISE Conference 2018 at Hongkong<br/>
+            https://riseconf.com/
+          </div>
+        </Paper>
+      )
+    }
+    else return null;
   }
 }
               
